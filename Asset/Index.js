@@ -1,12 +1,9 @@
 const form = document.getElementById("form-country");
 
-const country = document.getElementById("select-country").value;
-const getCountry = document.getElementById("get-countries");
-
-
 form.addEventListener('submit', function(e){
 	e.preventDefault()
 
+	const country = document.getElementById("countries").value;
 	const options = {
 		method: 'GET',
 		headers: {
@@ -16,6 +13,8 @@ form.addEventListener('submit', function(e){
 	};
 	fetch (`https://covid-193.p.rapidapi.com/statistics?country=${country}`,options)
 		.then((response)=> response.json())
+
+		
 		.then((data)=> {
 			console.log(data)
 			
@@ -27,5 +26,9 @@ form.addEventListener('submit', function(e){
 			document.getElementById('test').innerHTML =data.response[0].tests.total
 		
 		})
+
+	
+
+
 
 })
